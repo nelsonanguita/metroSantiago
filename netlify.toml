@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"
+
+# Redirige /test/estaciones/* → función proxy
+[[redirects]]
+  from = "/test/estaciones/*"
+  to = "/.netlify/functions/metro/:splat"
+  status = 200

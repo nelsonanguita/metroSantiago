@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mapa Metro de Santiago </title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Mapa Metro de Santiago </h1>
+                <p>Estado actual de todas las estaciones del sistema metro</p>
+            </header>
+            <div class="status-summary">
+                <div class="status-item status-ok" id="estaciones_habilitadas">estaciones habilitadas</div>
+                <div class="status-item status-alert" id="estaciones_problemas">0 estaciones con problemas</div>
+            </div>
+                <div class="status-summary">
+                <div class="status-item status-alert" id="estaciones_mensajes"></div>
+            </div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color line-1"></div>
+                    <span>Línea 1</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color line-2"></div>
+                    <span>Línea 2</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color line-3"></div>
+                    <span>Línea 3</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color line-4"></div>
+                    <span>Línea 4</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color line-4a"></div>
+                    <span>Línea 4A</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color line-5"></div>
+                    <span>Línea 5</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color line-6"></div>
+                    <span>Línea 6</span>
+                </div>
+            </div>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script type="module" src="js/script.js"></script>
+    </body>
+</html>
