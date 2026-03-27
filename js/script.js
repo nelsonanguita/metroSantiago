@@ -1,5 +1,4 @@
 import { geojsonData } from './dataGeo.js';
-console.log(geojsonData)
 // Inicializar el mapa centrado en Santiago
 const map = L.map('map').setView([-33.45, -70.65], 11);
 
@@ -53,7 +52,6 @@ const metroData = fetch('/test/estaciones').then(response => response.json()).th
 
 // Datos del estado de las estaciones
 function contarEstaciones(metroData) {
-    console.log(metroData)
     const estaciones = metroData.estaciones.l1.estaciones.concat(metroData.estaciones.l2.estaciones).concat(metroData.estaciones.l3.estaciones).concat(metroData.estaciones.l4.estaciones).concat(metroData.estaciones.l4a.estaciones).concat(metroData.estaciones.l5.estaciones).concat(metroData.estaciones.l6.estaciones);
 
     const total = estaciones.length;
