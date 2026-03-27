@@ -149,7 +149,6 @@ geojsonData.features.forEach(feature => {
 
     // Obtener el estado de la estación
     const {status, mensaje} = findStationStatus(nombre, lineName);
-console.log(status)
     // Determinar si es una estación de transferencia
     const isTransfer = isTransferStation(nombre, lineName);
 
