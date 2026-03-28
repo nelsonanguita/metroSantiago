@@ -4,7 +4,8 @@
 
 exports.handler = async (event) => {
 
-  const apiKey = process.env.BACKEND_URL;
+  const url = process.env.BACKEND_URL;
+  const apiKey = process.env.TOKEN;
 
   if (!apiKey) {
     return {
@@ -17,7 +18,16 @@ exports.handler = async (event) => {
   const path = event.path.replace('/.netlify/functions/metro', '') || '/test/estaciones';
 
   try {
-    const response = await fetch(`${apiKey}${path}`);
+    const response = await fetch(`${url}${path}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'X-API-Key': apiKey
+      }
+
+    }
+
+    );
 
     if (!response.ok) {
       return {
