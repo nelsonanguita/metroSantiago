@@ -36,8 +36,20 @@ function getLineName(lineProperty) {
 
     return 'Linea 1';
 }
-
-const metroData = fetch('/test/estaciones').then(response => response.json()).then(data => {
+const apiKey = process.env.TOKEN;
+if (!apiKey) {
+    return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "BACKEND_URL no definido" }),
+    };
+}
+const metroData = fetch('/test/estaciones', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'X-API-Key': apiKey
+    }
+}).then(response => response.json()).then(data => {
 
     //  console.log('Estado del Metro de Santiago:', data);
     // Aquí puedes agregar código para actualizar la interfaz de usuario con los datos obtenidos
@@ -98,7 +110,7 @@ function findStationStatus(stationName, lineName) {
 
     // Buscar en los datos de metroData
     const lineKey = lineName.toLowerCase().replace('linea ', 'l').replace('a', '');
-let station ={}
+    let station = {}
     if (metroData[lineKey] && metroData[lineKey].estaciones) {
         for (const station of metroData[lineKey].estaciones) {
             const normalizedDataName = normalizeStationName(station.nombre);
@@ -112,8 +124,8 @@ let station ={}
         }
     }
 
-        station.status = "Habilitada";
-        station.mensaje = '';
+    station.status = "Habilitada";
+    station.mensaje = '';
     return station;
 }
 
@@ -148,7 +160,7 @@ geojsonData.features.forEach(feature => {
     const color = lineColors[lineName] || '#333';
 
     // Obtener el estado de la estación
-    const {status, mensaje} = findStationStatus(nombre, lineName);
+    const { status, mensaje } = findStationStatus(nombre, lineName);
     // Determinar si es una estación de transferencia
     const isTransfer = isTransferStation(nombre, lineName);
 
