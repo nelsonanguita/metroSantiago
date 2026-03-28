@@ -25,9 +25,7 @@ exports.handler = async (event) => {
         'X-API-Key': apiKey
       }
 
-    }
-
-    );
+    });
 
     if (!response.ok) {
       return {

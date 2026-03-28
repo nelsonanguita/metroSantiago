@@ -36,29 +36,11 @@ function getLineName(lineProperty) {
 
     return 'Linea 1';
 }
-const apiKey = process.env.TOKEN;
 
-try {
-    if (!apiKey) {
-    return {
-        statusCode: 500,
-        body: JSON.stringify({ error: "BACKEND_URL no definido" }),
-    };
-}
-} catch (error) {
-    console.log(error.message)
-}
+const metroData = fetch('/test/estaciones')
+    .then(response => response.json())
+    .then(data => {
 
-const metroData = fetch('/test/estaciones', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        'X-API-Key': apiKey
-    }
-}).then(response => response.json()).then(data => {
-
-    //  console.log('Estado del Metro de Santiago:', data);
-    // Aquí puedes agregar código para actualizar la interfaz de usuario con los datos obtenidos
     contarEstaciones(data);
     return data;
 
