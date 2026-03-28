@@ -37,12 +37,18 @@ function getLineName(lineProperty) {
     return 'Linea 1';
 }
 const apiKey = process.env.TOKEN;
-if (!apiKey) {
+
+try {
+    if (!apiKey) {
     return {
         statusCode: 500,
         body: JSON.stringify({ error: "BACKEND_URL no definido" }),
     };
 }
+} catch (error) {
+    console.log(error.message)
+}
+
 const metroData = fetch('/test/estaciones', {
     method: 'GET',
     headers: {
